@@ -10,9 +10,12 @@ datagroup: national_parks_default_datagroup {
 
 persist_with: national_parks_default_datagroup
 
-explore: park_species {}
+explore: park_species {
+  label: "Species"
+}
 
 explore: parks {
+  label: "Parks - Combined"
   join: trails {
     type: left_outer
     relationship: many_to_many
@@ -25,4 +28,6 @@ explore: parks {
   }
 }
 
-explore: trails {}
+explore: trails {
+  label: "Trails"
+}
