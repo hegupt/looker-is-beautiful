@@ -1,4 +1,4 @@
-connection: "national_parks"
+connection: "sg_ll"
 
 # include all the views
 include: "/views/**/*.view"
