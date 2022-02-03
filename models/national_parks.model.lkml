@@ -2,6 +2,7 @@ connection: "national_parks"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/species.dashboard"
 
 datagroup: national_parks_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
