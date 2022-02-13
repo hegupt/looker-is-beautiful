@@ -13,7 +13,7 @@ datagroup: national_parks_default_datagroup {
 persist_with: national_parks_default_datagroup
 
 explore: parks {
-  label: "National Parks - All"
+  label: "Parks"
   join: trails {
     type: left_outer
     relationship: many_to_many

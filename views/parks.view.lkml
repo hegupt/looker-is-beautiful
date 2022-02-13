@@ -43,4 +43,10 @@ view: parks {
     type: count
     drill_fields: [park_name]
   }
+
+  dimension: art {
+    type: string
+    sql:  ${TABLE}.art;;
+    html: <img height="300px" src="{{value}}" /> ;;
+  }
 }
