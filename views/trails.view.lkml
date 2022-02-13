@@ -16,17 +16,20 @@ view: trails {
 
   dimension: activities {
     type: string
-    sql: ${TABLE}.activities ;;
+    sql: REGEXP_REPLACE(${TABLE}.activities, '[\\[\\]\']', '') ;;
+    suggestions: ["birding","hiking","nature-trips","paddle-sports","walking","canoeing","fishing","trail-running","horseback-riding","hiking","fishing","snowshoeing","scenic-driving","backpacking","off-road-driving","mountain-biking","camping","cross-country-skiing","nature-trips","road-biking","sea-kayaking","walking","birding","road-biking","rails-trails","fly-fishing","off-road-driving","bike-touring","scenic-driving","camping","whitewater-kayaking","rock-climbing","surfing","bike-touring","skiing","mountain-biking","snowboarding","ice-climbing","paddle-sports","snowshoeing"]
   }
 
   dimension: area_name {
+    label: "Park Name"
     type: string
     sql: ${TABLE}.area_name ;;
   }
 
-  dimension: avg_rating {
-    type: number
+  measure: avg_rating {
+    type: average
     sql: ${TABLE}.avg_rating ;;
+    value_format: "0.0"
   }
 
   dimension: city_name {
@@ -39,9 +42,10 @@ view: trails {
     sql: ${TABLE}.country_name ;;
   }
 
-  dimension: difficulty_rating {
-    type: number
+  measure: difficulty_rating {
+    type: average
     sql: ${TABLE}.difficulty_rating ;;
+    value_format: "0.0"
   }
 
   dimension: elevation_gain {
@@ -51,12 +55,14 @@ view: trails {
 
   dimension: features {
     type: string
-    sql: ${TABLE}.features ;;
+    sql: REGEXP_REPLACE(${TABLE}.features, '[\\[\\]\']', '') ;;
+    suggestions: ["dogs-no","forest","views","wild-flowers","wildlife","lake","kids","river","waterfall","dogs","beach","partially-paved","ada","dogs-no","paved","strollers","cave","historic-site","river","kids","views","dogs-leash","dogs-leash","cave","lake","beach","rails-trails","hot-springs","forest","dogs","city-walk","historic-site","paved","ada","partially-paved","city-walk","wildlife"]
   }
 
   dimension: length {
     type: number
     sql: ${TABLE}.length ;;
+    value_format: "0.0"
   }
 
   dimension: name {
@@ -64,14 +70,16 @@ view: trails {
     sql: ${TABLE}.name ;;
   }
 
-  dimension: num_reviews {
-    type: number
+  measure: num_reviews {
+    type: sum
     sql: ${TABLE}.num_reviews ;;
+    value_format: "0"
   }
 
-  dimension: popularity {
-    type: number
+  measure: popularity {
+    type: average
     sql: ${TABLE}.popularity ;;
+    value_format: "0.0"
   }
 
   dimension: route_type {
@@ -89,14 +97,27 @@ view: trails {
     sql: ${TABLE}.units ;;
   }
 
-  dimension: visitor_usage {
-    type: number
+  measure: visitor_usage {
+    type: average
     sql: ${TABLE}.visitor_usage ;;
+    value_format: "0"
   }
 
   measure: count {
     type: count
     drill_fields: [detail*]
+  }
+
+  measure: total_hikeable_miles {
+    type: sum
+    sql: ${TABLE}.length ;;
+    value_format: "0.0"
+  }
+
+  measure: total_hikeable_elevation_gain {
+    type: sum
+    sql: ${TABLE}.elevation_gain ;;
+    value_format: "0"
   }
 
   # ----- Sets of fields for drilling ------

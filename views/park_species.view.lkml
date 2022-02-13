@@ -33,6 +33,7 @@ view: park_species {
   }
 
   dimension: park_name {
+    label: "Park Name"
     type: string
     sql: ${TABLE}.Park_Name ;;
   }

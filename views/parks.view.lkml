@@ -2,8 +2,8 @@ view: parks {
   sql_table_name: `national_parks.parks`
     ;;
 
-  dimension: acres {
-    type: number
+  measure: acres {
+    type: sum
     sql: ${TABLE}.Acres ;;
   }
 
@@ -29,6 +29,7 @@ view: parks {
   }
 
   dimension: park_name {
+    label: "Park Name"
     type: string
     sql: ${TABLE}.Park_Name ;;
   }
