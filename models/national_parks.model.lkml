@@ -2,7 +2,8 @@ connection: "national_parks"
 
 # include all the views
 include: "/views/**/*.view"
-include: "/species.dashboard"
+# include all dashboards
+include: "/dashboards/**/*.dashboard"
 
 datagroup: national_parks_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -11,12 +12,8 @@ datagroup: national_parks_default_datagroup {
 
 persist_with: national_parks_default_datagroup
 
-explore: park_species {
-  label: "Species"
-}
-
 explore: parks {
-  label: "Parks - Combined"
+  label: "National Parks - All"
   join: trails {
     type: left_outer
     relationship: many_to_many
@@ -42,4 +39,8 @@ explore: trails {
 
 explore: park_climate {
   label: "Climates"
+}
+
+explore: park_species {
+  label: "Species"
 }
