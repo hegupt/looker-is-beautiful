@@ -31,6 +31,12 @@ explore: parks {
     relationship: one_to_one
     sql_on: ${parks.park_name} = ${park_climate.park} ;;
   }
+  join: guides {
+    view_label: "Activity Guides"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${parks.park_code} = upper(${guides.park}) ;;
+  }
 }
 
 explore: trails {
@@ -43,4 +49,8 @@ explore: park_climate {
 
 explore: park_species {
   label: "Species"
+}
+
+explore: guides {
+  label: "Activity Guides"
 }

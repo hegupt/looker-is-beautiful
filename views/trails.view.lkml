@@ -50,7 +50,14 @@ view: trails {
 
   dimension: elevation_gain {
     type: number
+    sql: ${TABLE}.elevation_gain * 3.28084 ;;
+    value_format: "0"
+  }
+
+  dimension: elevation_gain_in_meters {
+    type: number
     sql: ${TABLE}.elevation_gain ;;
+    value_format: "0"
   }
 
   dimension: features {
@@ -61,7 +68,13 @@ view: trails {
 
   dimension: length {
     type: number
-    sql: ${TABLE}.length ;;
+    sql: ${TABLE}.length * 0.000621 ;;
+    value_format: "0.0"
+  }
+
+  dimension: length-in-km {
+    type: number
+    sql: ${TABLE}.length / 1000 ;;
     value_format: "0.0"
   }
 
@@ -110,13 +123,13 @@ view: trails {
 
   measure: total_hikeable_miles {
     type: sum
-    sql: ${TABLE}.length ;;
+    sql: ${TABLE}.length * 0.000621 ;;
     value_format: "0.0"
   }
 
   measure: total_hikeable_elevation_gain {
     type: sum
-    sql: ${TABLE}.elevation_gain ;;
+    sql: ${TABLE}.elevation_gain * 3.28084 ;;
     value_format: "0"
   }
 

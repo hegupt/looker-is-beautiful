@@ -94,6 +94,89 @@ view: park_climate {
     description: "measured in mph"
   }
 
+  measure: highest_month_barometric_pressure {
+    type: max
+    sql: ${TABLE}.avg_barometric_pressure ;;
+    value_format: "0"
+    description: "measured in inches"
+  }
+
+  measure: most_overcast_month_cloud_cover {
+    type: max
+    sql: ${TABLE}.avg_cloud_cover ;;
+    value_format: "0\%"
+  }
+
+  measure: driest_month_avg_dry_days {
+    type: min
+    sql: ${TABLE}.avg_dry_days ;;
+    value_format: "0"
+  }
+
+  measure: foggiest_month_fog_days {
+    type: max
+    sql: ${TABLE}.avg_fog_days ;;
+    value_format: "0"
+  }
+
+  measure: most_humid_month_avg_humidity {
+    type: max
+    sql: ${TABLE}.avg_humidity ;;
+    value_format: "0\%"
+  }
+
+  measure: rainiest_month_precip_days {
+    type: max
+    sql: ${TABLE}.avg_precip_days ;;
+    value_format: "0"
+  }
+
+  measure: rainiest_month_avg_precipitation {
+    type: max
+    sql: ${TABLE}.avg_precipitation ;;
+    value_format: "0.0"
+    description: "measured in inches"
+  }
+
+  measure: snowiest_month_avg_snow_days {
+    type: max
+    sql: ${TABLE}.avg_snow_days ;;
+    value_format: "0"
+  }
+
+  measure: clearest_month_avg_sun_hours {
+    type: max
+    sql: ${TABLE}.avg_sun_hours ;;
+    value_format: "0"
+  }
+
+  measure: hottest_month_avg_tmp_high {
+    type: max
+    sql: ${TABLE}.avg_tmp_high ;;
+    value_format: "0.0"
+    description: "measured in F"
+  }
+
+  measure: coldest_month_avg_tmp_low {
+    type: min
+    sql: ${TABLE}.avg_tmp_low ;;
+    value_format: "0.0"
+    description: "measured in F"
+  }
+
+  measure: max_month_uv_index {
+    type: max
+    sql: ${TABLE}.avg_uv_index ;;
+    value_format: "0.0"
+  }
+
+  measure: windiest_month_avg_wind {
+    type: max
+    sql: ${TABLE}.avg_wind_mph ;;
+    value_format: "0"
+    description: "measured in mph"
+  }
+
   dimension: month {
     type: string
     sql: ${TABLE}.month ;;
