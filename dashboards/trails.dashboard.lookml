@@ -46,19 +46,10 @@
       Features: trails.features
       Length: trails.length
       Activities: trails.activities
-    row: 4
-    col: 0
-    width: 16
-    height: 14
-  - name: ''
-    type: text
-    title_text: ''
-    subtitle_text: ''
-    body_text: <img src="https://www.nps.gov/articles/images/ReadyCNM_AIR044.jpg">
     row: 0
     col: 0
     width: 16
-    height: 4
+    height: 14
   - title: Trails
     name: Trails
     model: national_parks
@@ -123,7 +114,7 @@
       Features: trails.features
       Length: trails.length
       Activities: trails.activities
-    row: 18
+    row: 14
     col: 0
     width: 16
     height: 14
