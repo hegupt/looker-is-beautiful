@@ -14,12 +14,20 @@ view: guides {
   dimension: description {
     type: string
     sql: ${TABLE}.description ;;
+    link: {
+      url: "{{guides.link}}"
+      label: "Learn More about {{guides.activity}}"
+    }
   }
 
   dimension: activity {
     primary_key: yes
     type: string
     sql: ${TABLE}.feature ;;
+    link: {
+      url: "{{guides.link}}"
+      label: "Learn More about {{value}}"
+    }
   }
 
   dimension: link {
