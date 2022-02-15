@@ -29,6 +29,7 @@ view: parks {
   }
 
   dimension: park_name {
+    primary_key: yes
     label: "Park Name"
     type: string
     sql: ${TABLE}.park_name ;;

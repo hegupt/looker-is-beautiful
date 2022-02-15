@@ -49,6 +49,7 @@ view: park_species {
   }
 
   dimension: species_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.Species_ID ;;
   }

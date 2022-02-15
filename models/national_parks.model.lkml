@@ -26,7 +26,7 @@ explore: parks {
     sql_on: ${park_species.park_name} = ${parks.park_name} ;;
   }
   join: park_climate {
-    view_label: "Climate"
+    view_label: "Historical Avg Climate"
     type: left_outer
     relationship: one_to_one
     sql_on: ${parks.park_name} = ${park_climate.park} ;;
@@ -37,14 +37,41 @@ explore: parks {
     relationship: one_to_many
     sql_on: ${parks.park_code} = upper(${guides.park}) ;;
   }
-}
-
-explore: trails {
-  label: "Trails"
+  join: park_noaa_stations {
+    view_label: "Weather Stations"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${parks.park_name} = ${park_noaa_stations.park_name} ;;
+  }
+  join: detailed_weather {
+    view_label: "Detailed Climate Data"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${park_noaa_stations.station_id} = ${detailed_weather.stn} and
+    ${detailed_weather.month} = ${park_climate.month};;
+  }
+  join: climbing {
+    view_label: "Climbing Routes"
+    relationship: many_to_many
+    sql_on: ${parks.park_name} = ${climbing.park} ;;
+  }
 }
 
 explore: park_climate {
   label: "Climates"
+  join: park_noaa_stations {
+    view_label: "Weather Stations"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${park_climate.park} = ${park_noaa_stations.park_name} ;;
+  }
+  join: detailed_weather {
+    view_label: "Detailed Climate Data"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${park_noaa_stations.station_id} = ${detailed_weather.stn} and
+      ${detailed_weather.month} = ${park_climate.month};;
+  }
 }
 
 explore: park_species {
@@ -52,5 +79,16 @@ explore: park_species {
 }
 
 explore: guides {
-  label: "Activity Guides"
+  label: "Activities"
+  view_label: "Activities"
+  join: trails {
+    view_label: "Trails"
+    relationship: many_to_many
+    sql_on: ${guides.park} = ${trails.area_name} ;;
+  }
+  join: climbing {
+    view_label: "Climbing Routes"
+    relationship: many_to_many
+    sql_on: ${guides.park} = ${climbing.park} ;;
+  }
 }

@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Park Climate"
 view: park_climate {
+  label: "Historical Average Monthly Climate"
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `coconut-crab.national_parks.park_climate`
@@ -180,6 +181,7 @@ view: park_climate {
   dimension: month {
     type: string
     sql: ${TABLE}.month ;;
+    primary_key: yes
   }
 
   dimension: park {

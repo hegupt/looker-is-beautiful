@@ -17,6 +17,7 @@ view: guides {
   }
 
   dimension: activity {
+    primary_key: yes
     type: string
     sql: ${TABLE}.feature ;;
   }

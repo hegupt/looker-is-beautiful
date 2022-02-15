@@ -54,7 +54,7 @@
     type: text
     title_text: ''
     subtitle_text: ''
-    body_text: <img src="https://ovlc.org/wp-content/uploads/2015/03/wildflower-walk-banner.jpg">
+    body_text: <img src="https://www.nps.gov/articles/images/ReadyCNM_AIR044.jpg">
     row: 0
     col: 0
     width: 16
