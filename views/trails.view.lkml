@@ -64,7 +64,6 @@ view: trails {
   dimension: features_summary {
     type: string
     sql: REGEXP_REPLACE(${TABLE}.features, '[\\[\\]\']', '') ;;
-    can_filter: no
     suggestions: ["dogs-no","forest","views","wild-flowers","wildlife","lake","kids","river","waterfall","dogs","beach","partially-paved","ada","dogs-no","paved","strollers","cave","historic-site","river","kids","views","dogs-leash","dogs-leash","cave","lake","beach","rails-trails","hot-springs","forest","dogs","city-walk","historic-site","paved","ada","partially-paved","city-walk","wildlife"]
     description: "Filter Using Contains"
   }
