@@ -181,6 +181,11 @@ view: park_climate {
   dimension: month {
     type: string
     sql: ${TABLE}.month ;;
+  }
+
+  dimension: key {
+    hidden: yes
+    sql: concat(${TABLE}.month,'-',${TABLE}.park) ;;
     primary_key: yes
   }
 

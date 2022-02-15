@@ -1,7 +1,14 @@
 view: detailed_weather {
 
-  sql_table_name: `coconut-crab.national_parks.detailed_weather`
+  sql_table_name: `coconut-crab.national_parks.detailed_climate`
     ;;
+
+  dimension: measurement_id {
+    type: string
+    primary_key: yes
+    sql:  ${TABLE}.measurement_id ;;
+    hidden: yes
+  }
 
   measure: count_dewp {
     type: sum
@@ -200,6 +207,7 @@ view: detailed_weather {
     label: "Average Temperature"
     description: "Mean temperature for the day in degrees Fahrenheit to tenths."
     sql: ${TABLE}.temp ;;
+    value_format: "0.0"
   }
 
   dimension: thunder {
@@ -233,6 +241,16 @@ view: detailed_weather {
     label: "Mean Wind Speed"
     description: "Mean wind speed for the day in knots to tenths."
     sql: ${TABLE}.wdsp ;;
+  }
+
+  measure: total_rain_days {
+    type: sum
+    sql: case when  ${TABLE}.rain_drizzle then 1 else 0 end ;;
+  }
+
+  measure: total_snow_days {
+    type: sum
+    sql: case when  ${TABLE}.snow_ice_pellets then 1 else 0 end ;;
   }
 
   measure: count {

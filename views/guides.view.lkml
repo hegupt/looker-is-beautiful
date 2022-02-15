@@ -11,6 +11,12 @@ view: guides {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Description" in Explore.
 
+  dimension: key {
+    hidden: yes
+    sql: concat(${TABLE}.feature,'-',${TABLE}.park) ;;
+    primary_key: yes
+  }
+
   dimension: description {
     type: string
     sql: ${TABLE}.description ;;
@@ -21,7 +27,6 @@ view: guides {
   }
 
   dimension: activity {
-    primary_key: yes
     type: string
     sql: ${TABLE}.feature ;;
     link: {

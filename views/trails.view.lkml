@@ -19,6 +19,12 @@ view: trails {
     description: "Filter Using Contains"
     sql: REGEXP_REPLACE(${TABLE}.activities, '[\\[\\]\']', '') ;;
     suggestions: ["birding","hiking","nature-trips","paddle-sports","walking","canoeing","fishing","trail-running","horseback-riding","hiking","fishing","snowshoeing","scenic-driving","backpacking","off-road-driving","mountain-biking","camping","cross-country-skiing","nature-trips","road-biking","sea-kayaking","walking","birding","road-biking","rails-trails","fly-fishing","off-road-driving","bike-touring","scenic-driving","camping","whitewater-kayaking","rock-climbing","surfing","bike-touring","skiing","mountain-biking","snowboarding","ice-climbing","paddle-sports","snowshoeing"]
+    html: {% assign activities_summary = {{value}} | split: ', ' %}
+    <ul>
+    {% for activity in activities_summary %}
+    <li>{{ activity }}</li>
+    {% endfor %}
+    </ul>;;
   }
 
   dimension: area_name {
@@ -66,6 +72,12 @@ view: trails {
     sql: REGEXP_REPLACE(${TABLE}.features, '[\\[\\]\']', '') ;;
     suggestions: ["dogs-no","forest","views","wild-flowers","wildlife","lake","kids","river","waterfall","dogs","beach","partially-paved","ada","dogs-no","paved","strollers","cave","historic-site","river","kids","views","dogs-leash","dogs-leash","cave","lake","beach","rails-trails","hot-springs","forest","dogs","city-walk","historic-site","paved","ada","partially-paved","city-walk","wildlife"]
     description: "Filter Using Contains"
+    html: {% assign features = {{value}} | split: ', ' %}
+      <ul>
+      {% for feature in features %}
+      <li>{{ feature }}</li>
+      {% endfor %}
+      </ul>;;
   }
 
   dimension: length {
