@@ -55,6 +55,13 @@ explore: parks {
     relationship: many_to_many
     sql_on: ${parks.park_name} = ${climbing.park} ;;
   }
+  join: monthly_visits {
+    view_label: "Monthly Visits"
+    relationship: many_to_many
+    sql_on: ${parks.park_name} = ${monthly_visits.park} and
+    ${detailed_weather.month} = ${monthly_visits.month} and
+    ${detailed_weather.year} = CAST(${monthly_visits.year} AS STRING);;
+  }
 }
 
 explore: park_climate {
@@ -91,4 +98,8 @@ explore: guides {
     relationship: many_to_many
     sql_on: ${guides.park} = ${climbing.park} ;;
   }
+}
+
+explore: monthly_visits {
+  label: "Visit Stats"
 }

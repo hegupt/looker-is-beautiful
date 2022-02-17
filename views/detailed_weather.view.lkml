@@ -90,6 +90,12 @@ view: detailed_weather {
     sql: FORMAT_DATE("%B", ${TABLE}.date) ;;
   }
 
+  dimension: year {
+    type: string
+    hidden: yes
+    sql: FORMAT_DATE("%Y", ${TABLE}.date) ;;
+  }
+
 
   measure: dewp {
     type: average
