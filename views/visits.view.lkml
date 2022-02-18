@@ -1,5 +1,5 @@
 view: monthly_visits {
-  sql_table_name: `coconut-crab.national_parks.monthly_visits`
+  sql_table_name: `coconut-crab.national_parks.detailed_visits`
     ;;
 
 
