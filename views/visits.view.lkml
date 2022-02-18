@@ -15,6 +15,11 @@ view: monthly_visits {
     sql: ${TABLE}.year ;;
   }
 
+  dimension: comments {
+    type: string
+    sql: ${TABLE}.comments ;;
+  }
+
   dimension: season {
     type: string
     description: "Season of Recording"
