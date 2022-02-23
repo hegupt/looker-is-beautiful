@@ -12,6 +12,11 @@ datagroup: national_parks_default_datagroup {
 
 persist_with: national_parks_default_datagroup
 
+map_layer: national_parks_layer {
+  file: "/geo_info/natparks.topojson"
+  property_key: "UNIT_CODE"
+}
+
 explore: parks {
   label: "Parks"
   join: trails {

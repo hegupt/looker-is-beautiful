@@ -28,6 +28,13 @@ view: parks {
     sql: ${TABLE}.Park_Code ;;
   }
 
+  dimension: park_geo {
+    type: string
+    sql: ${TABLE}.Park_Code ;;
+    map_layer_name: national_parks_layer
+    html: {{ parks.park_name }} ;;
+  }
+
   dimension: park_name {
     primary_key: yes
     label: "Park Name"
