@@ -500,7 +500,7 @@
   - name: Types
     title: Types
     type: field_filter
-    default_value: "%grass%"
+    default_value: "%grass%,%fighting%"
     allow_multiple_values: true
     required: false
     ui_config:
