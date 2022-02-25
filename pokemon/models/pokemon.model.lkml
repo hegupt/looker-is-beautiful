@@ -14,5 +14,5 @@ datagroup: pokemon_default_datagroup {
 persist_with: pokemon_default_datagroup
 
 explore: pokemon {
-  label: "Gotta OAuth them all"
+  label: "Pokedex"
 }
