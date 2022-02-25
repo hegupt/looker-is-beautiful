@@ -1,9 +1,9 @@
-connection: "national_parks"
+connection: "looker-you-beautiful"
 
 # include all the views
-include: "/views/**/*.view"
+include: "../views/**/*.view"
 # include all dashboards
-include: "/dashboards/**/*.dashboard"
+include: "../dashboards/**/*.dashboard"
 
 datagroup: national_parks_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -13,7 +13,7 @@ datagroup: national_parks_default_datagroup {
 persist_with: national_parks_default_datagroup
 
 map_layer: national_parks_layer {
-  file: "/geo_info/natparks.topojson"
+  file: "/national_parks/geo_info/natparks.topojson"
   property_key: "UNIT_CODE"
 }
 
