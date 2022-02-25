@@ -145,8 +145,8 @@ view: pokemon {
     sql: ${TABLE}.base_total ;;
   }
 
-  measure: capture_rate {
-    type: average
+  dimension: capture_rate {
+    type: string
     sql: ${TABLE}.capture_rate ;;
   }
 
@@ -181,8 +181,8 @@ view: pokemon {
   }
 
   dimension: is_legendary {
-    type: number
-    sql: ${TABLE}.is_legendary ;;
+    type: yesno
+    sql: case when ${TABLE}.is_legendary = 1 then true else false end ;;
   }
 
   dimension: percentage_male {
@@ -205,12 +205,21 @@ view: pokemon {
     sql: ${TABLE}.speed ;;
   }
 
+  dimension: type {
+    label: "Types"
+    type: string
+    sql: concat(${TABLE}.type2, ', ' ,${TABLE}.type2)  ;;
+    suggest_dimension: type1
+  }
+
   dimension: type1 {
+    label: "Primary Type"
     type: string
     sql: ${TABLE}.type1 ;;
   }
 
   dimension: type2 {
+    label: "Secondary Type"
     type: string
     sql: ${TABLE}.type2 ;;
   }

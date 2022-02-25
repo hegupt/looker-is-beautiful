@@ -1,4 +1,4 @@
-- dashboard: pokemon-stats
+- dashboard: pokemon_gotta_analyze_them_all
   title: Pokemon! Gotta analyze them all!
   layout: newspaper
   preferred_viewer: dashboards-next
@@ -10,7 +10,12 @@
     explore: pokemon
     type: looker_grid
     fields: [pokemon.name, pokemon.japanese_name, pokemon.photo, pokemon.abilities,
-      pokemon.attack, pokemon.defense, pokemon.pokedex_number]
+      pokemon.attack, pokemon.defense, pokemon.pokedex_number, pokemon.capture_rate,
+      pokemon.against_water, pokemon.against_steel, pokemon.against_rock, pokemon.against_psychic,
+      pokemon.against_poison, pokemon.against_normal, pokemon.against_ice, pokemon.against_ground,
+      pokemon.against_grass, pokemon.against_ghost, pokemon.against_flying, pokemon.against_fire,
+      pokemon.against_fight, pokemon.against_electric, pokemon.against_fairy, pokemon.against_dragon,
+      pokemon.against_dark, pokemon.against_bug]
     sorts: [pokemon.pokedex_number]
     limit: 500
     show_view_names: false
@@ -53,6 +58,10 @@
       pokemon.name:
         fg_color: "#1A73E8"
         bold: true
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: 0
     x_axis_gridlines: false
     y_axis_gridlines: true
     show_y_axis_labels: true
@@ -83,10 +92,13 @@
     hidden_fields: [pokemon.pokedex_number]
     listen:
       Name: pokemon.name
-    row: 19
+      Classfication: pokemon.classfication
+      Types: pokemon.type
+      Is Legendary (Yes / No): pokemon.is_legendary
+    row: 0
     col: 0
     width: 24
-    height: 14
+    height: 11
   - title: By Classifications
     name: By Classifications
     model: pokemon
@@ -138,10 +150,13 @@
     defaults_version: 1
     listen:
       Name: pokemon.name
-    row: 0
-    col: 8
-    width: 16
-    height: 6
+      Classfication: pokemon.classfication
+      Types: pokemon.type
+      Is Legendary (Yes / No): pokemon.is_legendary
+    row: 17
+    col: 0
+    width: 12
+    height: 7
   - title: Attack and Defense by Weight
     name: Attack and Defense by Weight
     model: pokemon
@@ -196,62 +211,13 @@
     map_projection: ''
     listen:
       Name: pokemon.name
-    row: 6
+      Classfication: pokemon.classfication
+      Types: pokemon.type
+      Is Legendary (Yes / No): pokemon.is_legendary
+    row: 31
     col: 0
     width: 24
     height: 7
-  - title: Top 10 abilities
-    name: Top 10 abilities
-    model: pokemon
-    explore: pokemon
-    type: looker_pie
-    fields: [pokemon.abilities, pokemon.against_dark]
-    sorts: [pokemon.against_dark desc]
-    limit: 10
-    value_labels: legend
-    label_type: labPer
-    inner_radius: 50
-    color_application:
-      collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
-      palette_id: e34425a5-3228-4f76-b45d-2e7cd13a6766
-      options:
-        steps: 5
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: ''
-    limit_displayed_rows: false
-    legend_position: center
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    defaults_version: 1
-    series_types: {}
-    font_size: 12
-    listen:
-      Name: pokemon.name
-    row: 0
-    col: 0
-    width: 8
-    height: 6
   - title: Best Attack Types
     name: Best Attack Types
     model: pokemon
@@ -311,9 +277,12 @@
     interpolation: linear
     listen:
       Name: pokemon.name
-    row: 13
+      Classfication: pokemon.classfication
+      Types: pokemon.type
+      Is Legendary (Yes / No): pokemon.is_legendary
+    row: 11
     col: 0
-    width: 13
+    width: 12
     height: 6
   - title: Best Defense Types
     name: Best Defense Types
@@ -373,10 +342,132 @@
     interpolation: linear
     listen:
       Name: pokemon.name
-    row: 13
-    col: 13
-    width: 11
+      Classfication: pokemon.classfication
+      Types: pokemon.type
+      Is Legendary (Yes / No): pokemon.is_legendary
+    row: 11
+    col: 12
+    width: 12
     height: 6
+  - title: By Generation
+    name: By Generation
+    model: pokemon
+    explore: pokemon
+    type: looker_column
+    fields: [pokemon.attack, pokemon.defense, pokemon.generation]
+    sorts: [pokemon.attack desc]
+    limit: 10
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    color_application:
+      collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+      palette_id: e34425a5-3228-4f76-b45d-2e7cd13a6766
+      options:
+        steps: 5
+    font_size: '12'
+    series_types: {}
+    series_colors:
+      pokemon.attack: "#eb201d"
+      pokemon.defense: "#2ca7cc"
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
+    defaults_version: 1
+    listen:
+      Name: pokemon.name
+      Classfication: pokemon.classfication
+      Types: pokemon.type
+      Is Legendary (Yes / No): pokemon.is_legendary
+    row: 17
+    col: 12
+    width: 12
+    height: 7
+  - title: Attack and Defense by Speed
+    name: Attack and Defense by Speed
+    model: pokemon
+    explore: pokemon
+    type: looker_scatter
+    fields: [pokemon.attack, pokemon.defense, pokemon.speed]
+    sorts: [pokemon.attack desc]
+    limit: 500
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: circle
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    color_application:
+      collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2
+      palette_id: e34425a5-3228-4f76-b45d-2e7cd13a6766
+      options:
+        steps: 5
+    font_size: '12'
+    series_types: {}
+    series_colors:
+      pokemon.attack: "#eb201d"
+      pokemon.defense: "#2ca7cc"
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    value_labels: legend
+    label_type: labPer
+    inner_radius: 50
+    defaults_version: 1
+    map: usa
+    map_projection: ''
+    listen:
+      Name: pokemon.name
+      Classfication: pokemon.classfication
+      Types: pokemon.type
+      Is Legendary (Yes / No): pokemon.is_legendary
+    row: 24
+    col: 0
+    width: 24
+    height: 7
   filters:
   - name: Name
     title: Name
@@ -392,3 +483,45 @@
     explore: pokemon
     listens_to_filters: []
     field: pokemon.name
+  - name: Classfication
+    title: Classfication
+    type: field_filter
+    default_value: ''
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: checkboxes
+      display: popover
+      options: []
+    model: pokemon
+    explore: pokemon
+    listens_to_filters: []
+    field: pokemon.classfication
+  - name: Types
+    title: Types
+    type: field_filter
+    default_value: "%grass%"
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: advanced
+      display: popover
+      options: []
+    model: pokemon
+    explore: pokemon
+    listens_to_filters: []
+    field: pokemon.type
+  - name: Is Legendary (Yes / No)
+    title: Is Legendary (Yes / No)
+    type: field_filter
+    default_value: 'Yes'
+    allow_multiple_values: true
+    required: false
+    ui_config:
+      type: radio_buttons
+      display: popover
+      options: []
+    model: pokemon
+    explore: pokemon
+    listens_to_filters: []
+    field: pokemon.is_legendary
