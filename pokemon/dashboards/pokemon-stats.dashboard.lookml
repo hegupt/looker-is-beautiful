@@ -6,7 +6,7 @@
   elements:
   - title: Pokemon! Gotta analyze them all!
     name: Pokemon! Gotta analyze them all!
-    model: oauth-pokemon
+    model: pokemon
     explore: pokemon
     type: looker_grid
     fields: [pokemon.name, pokemon.japanese_name, pokemon.photo, pokemon.abilities,
@@ -89,7 +89,7 @@
     height: 14
   - title: By Classifications
     name: By Classifications
-    model: oauth-pokemon
+    model: pokemon
     explore: pokemon
     type: looker_column
     fields: [pokemon.classfication, pokemon.attack, pokemon.defense]
@@ -144,7 +144,7 @@
     height: 6
   - title: Attack and Defense by Weight
     name: Attack and Defense by Weight
-    model: oauth-pokemon
+    model: pokemon
     explore: pokemon
     type: looker_scatter
     fields: [pokemon.weight_kg, pokemon.attack, pokemon.defense]
@@ -202,7 +202,7 @@
     height: 7
   - title: Top 10 abilities
     name: Top 10 abilities
-    model: oauth-pokemon
+    model: pokemon
     explore: pokemon
     type: looker_pie
     fields: [pokemon.abilities, pokemon.against_dark]
@@ -254,7 +254,7 @@
     height: 6
   - title: Best Attack Types
     name: Best Attack Types
-    model: oauth-pokemon
+    model: pokemon
     explore: pokemon
     type: looker_pie
     fields: [pokemon.type1, pokemon.attack]
@@ -317,7 +317,7 @@
     height: 6
   - title: Best Defense Types
     name: Best Defense Types
-    model: oauth-pokemon
+    model: pokemon
     explore: pokemon
     type: looker_pie
     fields: [pokemon.type1, pokemon.defense]
@@ -388,7 +388,7 @@
       type: advanced
       display: popover
       options: []
-    model: oauth-pokemon
+    model: pokemon
     explore: pokemon
     listens_to_filters: []
     field: pokemon.name
