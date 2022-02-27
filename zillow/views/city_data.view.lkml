@@ -7,6 +7,7 @@ view: city_data {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
+    hidden: yes
   }
 
   dimension: city {
@@ -17,10 +18,13 @@ view: city_data {
   dimension: city_ascii {
     type: string
     sql: ${TABLE}.city_ascii ;;
+    hidden: yes
   }
 
   dimension: county_fips {
     type: number
+
+    description: "County FIPS code, https://en.wikipedia.org/wiki/FIPS_county_code"
     sql: ${TABLE}.county_fips ;;
   }
 
@@ -29,8 +33,8 @@ view: city_data {
     sql: ${TABLE}.county_name ;;
   }
 
-  dimension: density {
-    type: number
+  measure: density {
+    type: average
     sql: ${TABLE}.density ;;
   }
 
@@ -42,11 +46,19 @@ view: city_data {
   dimension: lat {
     type: number
     sql: ${TABLE}.lat ;;
+    hidden: yes
   }
 
   dimension: lng {
     type: number
     sql: ${TABLE}.lng ;;
+    hidden: yes
+  }
+
+  dimension: location {
+    type: location
+    sql_latitude: ${TABLE}.lat ;;
+    sql_longitude: ${TABLE}.lng ;;
   }
 
   dimension: military {
@@ -54,22 +66,12 @@ view: city_data {
     sql: ${TABLE}.military ;;
   }
 
-  dimension: population {
-    type: number
+  measure: population {
+    type: sum
     sql: ${TABLE}.population ;;
   }
 
-  dimension: ranking {
-    type: number
-    sql: ${TABLE}.ranking ;;
-  }
-
-  dimension: source {
-    type: string
-    sql: ${TABLE}.source ;;
-  }
-
-  dimension: state_id {
+  dimension: state_code {
     type: string
     sql: ${TABLE}.state_id ;;
   }
