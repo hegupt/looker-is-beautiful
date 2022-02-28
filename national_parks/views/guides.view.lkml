@@ -42,9 +42,9 @@ view: guides {
   }
 
   dimension: park {
-    label: "Park Name"
+    label: "Park Code"
     type: string
-    sql: ${TABLE}.park ;;
+    sql: UPPER(${TABLE}.park) ;;
   }
 
   measure: count {

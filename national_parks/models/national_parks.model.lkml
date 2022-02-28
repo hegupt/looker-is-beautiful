@@ -90,19 +90,27 @@ explore: park_species {
   label: "Species"
 }
 
-explore: guides {
+explore: activities {
+  view_name: parks
   label: "Activities"
   view_label: "Activities"
   join: trails {
-    view_label: "Trails"
+    type: left_outer
     relationship: many_to_many
-    sql_on: ${guides.park} = ${trails.area_name} ;;
+    sql_on: ${trails.area_name} = ${parks.park_name} ;;
   }
   join: climbing {
     view_label: "Climbing Routes"
     relationship: many_to_many
-    sql_on: ${guides.park} = ${climbing.park} ;;
+    sql_on: ${parks.park_name} = ${climbing.park} ;;
   }
+  join: guides {
+    view_label: "Activity Guides"
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${parks.park_code} = upper(${guides.park}) ;;
+  }
+
 }
 
 explore: monthly_visits {
