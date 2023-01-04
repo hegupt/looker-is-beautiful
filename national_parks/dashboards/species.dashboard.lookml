@@ -1,4 +1,5 @@
 - dashboard: species_finder
+
   title: Species Finder
   layout: newspaper
   preferred_viewer: dashboards-next
